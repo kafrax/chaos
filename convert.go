@@ -3,6 +3,7 @@ package chaos
 import (
 	"unsafe"
 	"bytes"
+	"github.com/json-iterator/go"
 )
 
 //data convert
@@ -26,4 +27,9 @@ func String2ASCII(s string) string {
 		}
 	}
 	return buf.String()
+}
+
+func MustMarshal2String(v interface{}) string {
+	b, _ := jsoniter.MarshalToString(v)
+	return b
 }

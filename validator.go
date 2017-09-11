@@ -15,32 +15,50 @@ var (
 	V_REGEXP_IPv4     = "\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b"
 )
 //validator string、phone、email etc.
-func IsPhone(phone string) bool {
+func IsPhone(phone string,regex ...string) bool {
+	if len(regex)>0{
+		V_REGEXP_PHONE=regex[0]
+	}
 	reg := regexp.MustCompile(V_REGEXP_PHONE)
 	return reg.MatchString(phone)
 }
 
-func IsUserName(userName string) bool {
+func IsUserName(userName string,regex ...string) bool {
+	if len(regex)>0{
+		V_REGEXP_USERNAME=regex[0]
+	}
 	reg := regexp.MustCompile(V_REGEXP_USERNAME)
 	return reg.MatchString(userName)
 }
 
-func IsNick(nick string) bool {
+func IsNick(nick string,regex ...string) bool {
+	if len(regex)>0{
+		V_REGEXP_NICK=regex[0]
+	}
 	reg := regexp.MustCompile(V_REGEXP_NICK)
 	return reg.MatchString(nick)
 }
 
-func IsEmail(mail string) bool {
+func IsEmail(mail string,regex ...string) bool {
+	if len(regex)>0{
+		V_REGEXP_EMAIL=regex[0]
+	}
 	reg := regexp.MustCompile(V_REGEXP_EMAIL)
 	return reg.MatchString(mail)
 }
 
-func IsChinese(chars string) bool {
+func IsChinese(chars string,regex ...string) bool {
+	if len(regex)>0{
+		V_REGEXP_CHINESE=regex[0]
+	}
 	reg := regexp.MustCompile(V_REGEXP_CHINESE)
 	return reg.MatchString(chars)
 }
 
-func IsIPv4(ip string) bool {
+func IsIPv4(ip string,regex ...string) bool {
+	if len(regex)>0{
+		V_REGEXP_IPv4=regex[0]
+	}
 	reg := regexp.MustCompile(V_REGEXP_IPv4)
 	return reg.MatchString(ip)
 }
@@ -53,7 +71,10 @@ func IsNilString(s string) bool {
 	return false
 }
 
-func IsMoney2Point(s string) bool {
+func IsMoney2Point(s string,regex ...string) bool {
+	if len(regex)>0{
+		V_REGEXP_MONEY=regex[0]
+	}
 	reg := regexp.MustCompile(V_REGEXP_MONEY)
 	return reg.MatchString(s)
 }
@@ -67,7 +88,10 @@ func IsAllNilString(s ...string) bool {
 	return true
 }
 
-func IsPassword(pwd string) bool {
+func IsPassword(pwd string,regex ...string) bool {
+	if len(regex)>0{
+		V_REGEXP_PASSWORD=regex[0]
+	}
 	reg := regexp.MustCompile(V_REGEXP_PASSWORD)
 	return reg.MatchString(pwd)
 }
