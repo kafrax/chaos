@@ -10,7 +10,6 @@ import (
 )
 
 //commonly used secret function
-
 func MD5BySalt(src,salt string)string{
 	hash := md5.New()
 	io.WriteString(hash, src)
@@ -46,17 +45,17 @@ func SHA1(src  string)(string,error){
 	return fmt.Sprintf("%x", t.Sum(nil)), nil
 }
 
-type B64Encoding=base64.Encoding
+type B64Encoding struct{b *base64.Encoding}
 func B64NewEncoding(s string)*B64Encoding{
-	return base64.NewEncoding(s)
+	return &B64Encoding{b:base64.NewEncoding(s)}
 }
 
-func (b *B64Encoding)Encode(s string) string {
-	return b.EncodeToString([]byte(s))
+func (b *B64Encoding)B64Encode(s string) string {
+	return b.b.EncodeToString([]byte(s))
 }
 
-func (b *B64Encoding)Decode(s string)string{
-	result, err := b.DecodeString(s)
+func (b *B64Encoding)B64Decode(s string)string{
+	result, err := b.b.DecodeString(s)
 	if err != nil {
 		fmt.Println(err)
 		return ""
