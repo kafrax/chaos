@@ -10,7 +10,7 @@ import (
 )
 
 //uuid+unix time
-func RandUserId() string {
+func RandId() string {
 	return strconv.FormatInt(int64(uuid.New().Time()/10000000000)*10000000000+time.Now().Unix(), 10)
 }
 

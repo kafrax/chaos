@@ -6,6 +6,7 @@ import (
 	"encoding/hex"
 	"fmt"
 	"crypto/sha1"
+	"encoding/base64"
 )
 
 //commonly used secret function
@@ -45,3 +46,20 @@ func SHA1(src  string)(string,error){
 	return fmt.Sprintf("%x", t.Sum(nil)), nil
 }
 
+type B64Encoding=base64.Encoding
+func B64NewEncoding(s string)*B64Encoding{
+	return base64.NewEncoding(s)
+}
+
+func (b *B64Encoding)Encode(s string) string {
+	return b.EncodeToString([]byte(s))
+}
+
+func (b *B64Encoding)Decode(s string)string{
+	result, err := b.DecodeString(s)
+	if err != nil {
+		fmt.Println(err)
+		return ""
+	}
+	return string(result)
+}
