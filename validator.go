@@ -104,3 +104,12 @@ func IsASCII(s string) bool {
 	}
 	return true
 }
+
+func IsInStringSlice(dst string, src []string)bool{
+	for _,v:=range src{
+		if v==dst{
+			return true
+		}
+	}
+	return false
+}
