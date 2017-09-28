@@ -187,7 +187,7 @@ func (m *MongoImport) MongoImportAllByPath(col, sub string) {
 		logx.Debugf("mongoimport |message=%v |file=%v", "done", m.currentFile)
 		//m.tomb.Go(m.monitor)
 	}
-	logx.Debug("MongoImportAllByPath |导入所有文件到mongodb完毕")
+	logx.Debug("MongoImportAllByPath |done")
 }
 
 func (m *MongoImport) monitor() error {
