@@ -12,6 +12,7 @@ import (
 	"gopkg.in/mgo.v2"
 	"gopkg.in/tomb.v2"
 	"github.com/kafrax/logx"
+	"fmt"
 )
 
 var mgoSession *mgo.Session
@@ -196,6 +197,7 @@ func (m *MongoImport) monitor() error {
 		cmd.Stdout = os.Stderr
 		cmd.Stderr = os.Stderr
 		b, _ := cmd.Output()
+		fmt.Println(string(b))
 		logx.Debugf("mongoimport |message=%v |file=%v", "done", m.currentFile)
 	}
 	return nil
