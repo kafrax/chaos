@@ -4,9 +4,6 @@
 # do ./etc/daemon.sh
 # vi /etc/rc.loal
 # add ./etc/daemon.sh &
-app="";
-exe="nohup ./<app absolute path> &";
-exe1="nohp ./<app absolute path> &";
 function  CheckProcess
 {
   if [ "$1" = "" ];
@@ -22,23 +19,21 @@ function  CheckProcess
   fi
 }
 
-
 while [ 1 ] ; do
- CheckProcess ${app}
+ CheckProcess "appname"
   CheckQQ_RET=$?
   if [ $CheckQQ_RET -eq 1 ];
   then
     /usr/local/app/appname &
  fi
- CheckProcess "dim2015-08-03"
+
+# other proc
+ CheckProcess "appname1"
  CheckQQ_RET=$?
  if [ $CheckQQ_RET -eq 1 ];
 then
-# other proc
    /usr/local/app/appname1 &
  fi
-
- #���������������
 
  sleep 2
 done
