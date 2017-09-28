@@ -1,1 +1,1 @@
-## just 4 learn or project
+## just 4 learn blog or project initialize like common package
