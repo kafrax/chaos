@@ -7,15 +7,21 @@ import (
 	"crypto/rand"
 
 	"github.com/google/uuid"
+	"math/big"
 )
 
 //uuid+unix time
 func RandId() string {
-	return strconv.FormatInt(int64(uuid.New().Time()/10000000000)*10000000000+time.Now().Unix(), 10)
+	return strconv.FormatInt(int64(uuid.New().Time()/10000000000)*10000000000+Int64Range(1000000000,10000000000),10)
+}
+
+func RandIdInt64() int64 {
+	return int64(uuid.New().Time()/10000000000)*10000000000 +Int64Range(1000000000,10000000000)
 }
 
 //0123456789 select 6 password number
-const C_RAND_TMP= "0123456789"
+const C_RAND_TMP = "0123456789"
+
 func RandPassword(length int, chars []byte) string {
 	newPwd := make([]byte, length)
 	random := make([]byte, length+(length/4)) // storage for random bytes.
@@ -38,4 +44,15 @@ func RandPassword(length int, chars []byte) string {
 		}
 	}
 	panic("unreachable")
+}
+
+func Int64Range(min, max int64) int64 {
+	var result int64
+	maxRand := max - min
+	b, err := rand.Int(rand.Reader, big.NewInt(int64(maxRand)))
+	if err != nil {
+		return max
+	}
+	result = min + b.Int64()
+	return result
 }
