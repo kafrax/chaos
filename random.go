@@ -2,7 +2,6 @@ package chaos
 
 import (
 	"strconv"
-	"time"
 	"io"
 	"crypto/rand"
 
@@ -12,11 +11,11 @@ import (
 
 //uuid+unix time
 func RandId() string {
-	return strconv.FormatInt(int64(uuid.New().Time()/10000000000)*10000000000+Int64Range(1000000000,10000000000),10)
+	return strconv.FormatInt(int64(uuid.New().Time()/10000000000)*10000000000+Int64Range(100000000,10000000000),10)
 }
 
 func RandIdInt64() int64 {
-	return int64(uuid.New().Time()/10000000000)*10000000000 +Int64Range(1000000000,10000000000)
+	return int64(uuid.New().Time()/10000000000)*10000000000 +Int64Range(100000000,10000000000)
 }
 
 //0123456789 select 6 password number
