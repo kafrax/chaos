@@ -1,6 +1,7 @@
 package chaos
 
 import (
+	"encoding/xml"
 	"unsafe"
 	"bytes"
 	"github.com/json-iterator/go"
@@ -15,7 +16,7 @@ func String2Byte(s string) []byte {
 	return *(*[]byte)(unsafe.Pointer(&s))
 }
 
-//转换成ascii
+//to ascii
 func String2ASCII(s string) string {
 	if IsASCII(s) {
 		return s
@@ -31,5 +32,10 @@ func String2ASCII(s string) string {
 
 func MustMarshal2String(v interface{}) string {
 	b, _ := jsoniter.MarshalToString(v)
+	return b
+}
+
+func MustXMll2Byte(v interface{}) []byte {
+	b, _ := xml.Marshal(v)
 	return b
 }
