@@ -5,12 +5,10 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
+	"sort"
 	"crypto/sha1"
 	"encoding/base64"
 	"strings"
-
-	"sort"
-	"github.com/kafrax/logx"
 )
 
 //commonly used secret function
@@ -68,7 +66,6 @@ func (b *B64Encoding) B64Decode(s string) string {
 	return string(result)
 }
 
-
 //--------------------- for wechat pay -----------------------
 func CheckSign(msg map[string]interface{}, key, sign string) bool {
 	signCalc := CalcSign(msg, key)
@@ -96,7 +93,6 @@ func CalcSign(mReq map[string]interface{}, key string) (sign string) {
 	}
 
 	signStrings = signStrings + "key=" + key
-	logx.Debugf("CalcSign |signStr=%v", signStrings)
 	md5Ctx := md5.New()
 	md5Ctx.Write(String2Byte(signStrings))
 	cipherStr := md5Ctx.Sum(nil)
